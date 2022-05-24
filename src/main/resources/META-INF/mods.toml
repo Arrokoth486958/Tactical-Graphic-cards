@@ -8,7 +8,7 @@ version="${file.jarVersion}" #mandatory
 displayName="Tactical Graphic cards" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
-logoFile="assets/tactical_cards.png" #optional
+logoFile="logo.png" #optional
 authors="Love, Cheese and small house plants" #optional
 description='''
 Hope ur guys know what happened with GTX 690.

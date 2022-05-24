@@ -1,0 +1,37 @@
+{
+    "variants": 
+    {
+        "facing=down": 
+        {
+            "model": "tactical_cards:item/gtx_690",
+            "x": 180
+        },
+        "facing=east": 
+        {
+            "model": "tactical_cards:item/gtx_690",
+            "x": 90,
+            "y": 90
+        },
+        "facing=north": 
+        {
+            "model": "tactical_cards:item/gtx_690",
+            "x": 90
+        },
+        "facing=south": 
+        {
+            "model": "tactical_cards:item/gtx_690",
+            "x": 90,
+            "y": 180
+        },
+        "facing=up": 
+        {
+            "model": "tactical_cards:item/gtx_690"
+        },
+        "facing=west": 
+        {
+            "model": "tactical_cards:item/gtx_690",
+            "x": 90,
+            "y": 270
+        }
+    }
+}
