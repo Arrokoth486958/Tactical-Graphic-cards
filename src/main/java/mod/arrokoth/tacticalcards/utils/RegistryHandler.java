@@ -41,11 +41,13 @@ public class RegistryHandler
     public static void register(IEventBus bus)
     {
         // NVIDIA
-        registerCard("gtx_590", 15);
+        registerCard("gt_610", 15);
+        registerCard("gtx_590", 20);
         registerCard("gtx_690", 25);
         registerCard("titan_z", 30);
         // AMD
-        registerCard("hd_3870", 20);
+        registerCard("r9_295_x2", 20);
+        registerCard("hd_3870", 25);
         ENTITIES.put("card", ENTITIES_REGISTER.register("card", () -> EntityType.Builder.<GraphicCardEntity>of(GraphicCardEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(TacticalCards.MOD_ID + ".card")));
         ITEMS_REGISTER.register(bus);
         BLOCKS_REGISTER.register(bus);
@@ -54,7 +56,7 @@ public class RegistryHandler
 
     public static void registerCard(String id, float damage)
     {
-        BLOCKS.put(id, BLOCKS_REGISTER.register(id, GraphicCardBlock::new));
+        BLOCKS.put(id, BLOCKS_REGISTER.register(id, () -> new GraphicCardBlock(damage)));
         ITEM.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
     }
 

@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "tactical_cards:item/hd_3870"
+		"1": "tactical_cards:item/hd_3870",
+		"particle": "tactical_cards:item/hd_3870"
 	},
 	"elements": [
 		{
