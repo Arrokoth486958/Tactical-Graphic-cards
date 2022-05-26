@@ -4,22 +4,22 @@ import mod.arrokoth.tacticalcards.TacticalCards;
 import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
 import mod.arrokoth.tacticalcards.entity.GraphicCardEntity;
 import mod.arrokoth.tacticalcards.item.GraphicCardItem;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 
+@MethodsReturnNonnullByDefault
 public class RegistryHandler
 {
     public static final Map<String, RegistryObject<Item>> ITEM = new TreeMap<>();
@@ -29,7 +29,14 @@ public class RegistryHandler
     public static final Map<String, RegistryObject<EntityType<?>>> ENTITIES = new TreeMap<>();
     private static final DeferredRegister<EntityType<?>> ENTITIES_REGISTER = DeferredRegister.create(ForgeRegistries.ENTITIES, TacticalCards.MOD_ID);
 
-    public static CreativeModeTab TAB;
+    public static final CreativeModeTab TAB = new CreativeModeTab("tactical_cards")
+    {
+        @Override
+        public ItemStack makeIcon()
+        {
+            return new ItemStack(ITEM.get("gtx_690").get());
+        }
+    };
 
     public static void register(IEventBus bus)
     {
@@ -39,19 +46,15 @@ public class RegistryHandler
         ITEMS_REGISTER.register(bus);
         BLOCKS_REGISTER.register(bus);
         ENTITIES_REGISTER.register(bus);
-        TAB = new CreativeModeTab("tactical_cards")
-        {
-            @Override
-            public ItemStack makeIcon()
-            {
-                return new ItemStack(ITEM.get("gtx_690").get());
-            }
-        };
     }
 
     public static void registerCard(String id, float damage)
     {
-        BLOCKS.put(id, BLOCKS_REGISTER.register(id, () -> new GraphicCardBlock()));
+        BLOCKS.put(id, BLOCKS_REGISTER.register(id, GraphicCardBlock::new));
         ITEM.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
+    }
+
+    public static Item getCard(String id) {
+        return ITEM.get(id).get();
     }
 }

@@ -1,30 +1,26 @@
 package mod.arrokoth.tacticalcards.entity;
 
-import com.google.common.collect.Sets;
 import mod.arrokoth.tacticalcards.utils.RegistryHandler;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.*;
+import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.common.Tags;
 
-import javax.print.DocFlavor;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Set;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+@SuppressWarnings("unchecked")
 public class GraphicCardEntity extends Fireball
 {
     protected final float damage;
@@ -49,9 +45,9 @@ public class GraphicCardEntity extends Fireball
         this.damage = damage;
     }
 
-    protected void onHitBlock(BlockHitResult p_37258_)
+    protected void onHitBlock(BlockHitResult hit)
     {
-        super.onHitBlock(p_37258_);
+        super.onHitBlock(hit);
     }
 
     protected void onHit(HitResult result)
@@ -60,7 +56,7 @@ public class GraphicCardEntity extends Fireball
         if (!this.level.isClientSide)
         {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
-            this.level.explode((Entity)null, this.getX(), this.getY(), this.getZ(), this.damage / 2, flag, flag ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE);
+            this.level.explode(null, this.getX(), this.getY(), this.getZ(), this.damage / 2, flag, flag ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE);
             for (int x = (int) (result.getLocation().x - (this.damage / 2)); x < (int) (result.getLocation().x + (this.damage / 2)); ++x)
             {
                 for (int z = (int) (result.getLocation().z - (this.damage / 2)); z < (int) (result.getLocation().z + (this.damage / 2)); ++z)
@@ -83,10 +79,10 @@ public class GraphicCardEntity extends Fireball
         }
     }
 
-    protected void onHitEntity(EntityHitResult p_37216_) {
-        super.onHitEntity(p_37216_);
+    protected void onHitEntity(EntityHitResult hit) {
+        super.onHitEntity(hit);
         if (!this.level.isClientSide) {
-            Entity entity = p_37216_.getEntity();
+            Entity entity = hit.getEntity();
             Entity entity1 = this.getOwner();
             entity.hurt(DamageSource.fireball(this, entity1), 6.0F);
             if (entity1 instanceof LivingEntity) {
