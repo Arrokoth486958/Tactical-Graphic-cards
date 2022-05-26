@@ -9,19 +9,20 @@
         "facing=east": 
         {
             "model": "tactical_cards:item/gtx_690",
-            "x": 90,
-            "y": 90
+            "x": 270,
+            "y": 270
         },
         "facing=north": 
         {
             "model": "tactical_cards:item/gtx_690",
-            "x": 90
+            "x": 270,
+            "y": 180
         },
         "facing=south": 
         {
             "model": "tactical_cards:item/gtx_690",
-            "x": 90,
-            "y": 180
+            "x": 270,
+            "y": 0
         },
         "facing=up": 
         {
@@ -30,8 +31,8 @@
         "facing=west": 
         {
             "model": "tactical_cards:item/gtx_690",
-            "x": 90,
-            "y": 270
+            "x": 270,
+            "y": 90
         }
     }
 }
