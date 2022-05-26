@@ -54,7 +54,8 @@ public class RegistryHandler
         ITEM.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
     }
 
-    public static Item getCard(String id) {
+    public static Item getCard(String id)
+    {
         return ITEM.get(id).get();
     }
 }

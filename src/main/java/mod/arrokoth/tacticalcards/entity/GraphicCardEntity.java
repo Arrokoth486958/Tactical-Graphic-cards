@@ -15,8 +15,6 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -51,13 +49,6 @@ public class GraphicCardEntity extends Fireball
         this.damage = damage;
     }
 
-
-//    @Override
-//    public Vec3 getDeltaMovement()
-//    {
-//        siy
-//        return super.getDeltaMovement();
-//    }
     protected void onHitBlock(BlockHitResult hit)
     {
         super.onHitBlock(hit);
@@ -66,6 +57,23 @@ public class GraphicCardEntity extends Fireball
     protected void onHit(HitResult result)
     {
         super.onHit(result);
+        this.explode(result);
+    }
+
+    protected void onHitEntity(EntityHitResult result)
+    {
+        super.onHitEntity(result);
+        this.explode(result);
+    }
+
+    @Override
+    protected boolean shouldBurn()
+    {
+        return false;
+    }
+
+    protected void explode(HitResult result)
+    {
         if (!this.level.isClientSide)
         {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
@@ -90,24 +98,5 @@ public class GraphicCardEntity extends Fireball
             }
             this.discard();
         }
-    }
-
-    protected void onHitEntity(EntityHitResult hit) {
-        super.onHitEntity(hit);
-        if (!this.level.isClientSide) {
-            Entity entity = hit.getEntity();
-            Entity entity1 = this.getOwner();
-            entity.hurt(DamageSource.fireball(this, entity1), 6.0F);
-            if (entity1 instanceof LivingEntity) {
-                this.doEnchantDamageEffects((LivingEntity)entity1, entity);
-            }
-
-        }
-    }
-
-    @Override
-    protected boolean shouldBurn()
-    {
-        return false;
     }
 }

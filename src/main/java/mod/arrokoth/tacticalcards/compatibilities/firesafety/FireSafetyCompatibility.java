@@ -15,11 +15,14 @@ import static net.minecraft.sounds.SoundEvents.GENERIC_EXTINGUISH_FIRE;
 import static net.minecraft.sounds.SoundSource.BLOCKS;
 
 
-public class FireSafetyCompatibility {
-    public static void onExtension(FireSafetyExtensionEvent event) {
+public class FireSafetyCompatibility
+{
+    public static void onExtension(FireSafetyExtensionEvent event)
+    {
         event.addExtinguishable(TacticalCards.MODNAME, (short) 32666, new FireSafetyApi.ExtinguishableEntity(
                 (l, e) -> e instanceof GraphicCardEntity,
-                (l, e) -> {
+                (l, e) ->
+                {
                     final var stack = ((GraphicCardEntity) e).getItem();
                     l.addFreshEntity(new ItemEntity(l, e.getX(), e.getY(), e.getZ(), stack));
                     l.playSound(null, e, GENERIC_EXTINGUISH_FIRE, BLOCKS, 1F, 1F);
