@@ -19,7 +19,7 @@ public class FireSafetyCompatibility
 {
     public static void onExtension(FireSafetyExtensionEvent event)
     {
-        event.addExtinguishable(TacticalCards.MODNAME, (short) 32666, new FireSafetyApi.ExtinguishableEntity(
+        event.addExtinguishable(TacticalCards.MOD_NAME, (short) 32666, new FireSafetyApi.ExtinguishableEntity(
                 (l, e) -> e instanceof GraphicCardEntity,
                 (l, e) ->
                 {
@@ -29,12 +29,12 @@ public class FireSafetyCompatibility
                     e.discard();
                 }
         ));
-        event.addFireDanger(TacticalCards.MODNAME, (short) 32666, new FireSafetyApi.FireDangerEntity(
+        event.addFireDanger(TacticalCards.MOD_NAME, (short) 32666, new FireSafetyApi.FireDangerEntity(
                 (l, e) -> e instanceof GraphicCardEntity,
                 (l, e) -> 4,
                 (l, e) -> new TranslatableComponent("tips.firesafety.danger.tactical_cards")
         ));
-        event.addFireDanger(TacticalCards.MODNAME, (short) 32667, new FireSafetyApi.FireDangerEntity(
+        event.addFireDanger(TacticalCards.MOD_NAME, (short) 32667, new FireSafetyApi.FireDangerEntity(
                 //todo: if you adds new cards, add them into the set :D
                 (l, e) -> e instanceof Player p && p.getInventory().hasAnyOf(Set.of(getCard("gtx_590"), getCard("gtx_690"))),
                 (l, e) -> 3,

@@ -41,7 +41,8 @@ public class RegistryHandler
     public static void register(IEventBus bus)
     {
         registerCard("gtx_590", 15);
-        registerCard("gtx_690", 20);
+        registerCard("gtx_690", 25);
+        registerCard("titan_z", 30);
         ENTITIES.put("card", ENTITIES_REGISTER.register("card", () -> EntityType.Builder.<GraphicCardEntity>of(GraphicCardEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(TacticalCards.MOD_ID + ".card")));
         ITEMS_REGISTER.register(bus);
         BLOCKS_REGISTER.register(bus);

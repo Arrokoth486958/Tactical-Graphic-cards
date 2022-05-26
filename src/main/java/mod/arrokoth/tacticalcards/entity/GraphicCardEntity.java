@@ -60,12 +60,6 @@ public class GraphicCardEntity extends Fireball
         this.explode(result);
     }
 
-    protected void onHitEntity(EntityHitResult result)
-    {
-        super.onHitEntity(result);
-        this.explode(result);
-    }
-
     @Override
     protected boolean shouldBurn()
     {

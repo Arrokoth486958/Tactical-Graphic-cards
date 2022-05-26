@@ -15,7 +15,7 @@ public class TacticalCards
     //TODO: gravity of the cards
 
     public static final String MOD_ID = "tactical_cards";
-    public static final String MODNAME = "Tactical Cards";
+    public static final String MOD_NAME = "Tactical Cards";
 
     public TacticalCards()
     {
