@@ -1,6 +1,7 @@
 package mod.arrokoth.tacticalcards.utils;
 
 import mod.arrokoth.tacticalcards.entity.GraphicCardEntity;
+import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -20,5 +21,6 @@ public class RenderRegistry
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer((EntityType<? extends ThrowableItemProjectile>) RegistryHandler.ENTITIES.get("card").get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer((EntityType<? extends ThrowableItemProjectile>) RegistryHandler.ENTITIES.get("card").get(), GraphicCardRenderer::new);
     }
 }
