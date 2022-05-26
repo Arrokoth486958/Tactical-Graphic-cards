@@ -36,7 +36,7 @@ public class FireSafetyCompatibility
         ));
         event.addFireDanger(TacticalCards.MOD_NAME, (short) 32667, new FireSafetyApi.FireDangerEntity(
                 //todo: if you adds new cards, add them into the set :D
-                (l, e) -> e instanceof Player p && p.getInventory().hasAnyOf(Set.of(getCard("gtx_590"), getCard("gtx_690"))),
+                (l, e) -> e instanceof Player p && p.getInventory().hasAnyOf(Set.of(getCard("gtx_590"), getCard("gtx_690"), getCard("titan_z"))),
                 (l, e) -> 3,
                 (l, e) -> new TranslatableComponent("tips.firesafety.danger.player_with_card")
         ));
