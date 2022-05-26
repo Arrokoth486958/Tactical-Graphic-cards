@@ -18,6 +18,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 
 import javax.print.DocFlavor;
@@ -46,8 +47,19 @@ public class GraphicCardEntity extends Fireball
     {
         super((EntityType<? extends Fireball>) RegistryHandler.ENTITIES.get("card").get(), p_37376_, p_37377_, p_37378_, p_37379_, p_37375_);
         this.setItem(item);
+        this.setNoGravity(false);
+        this.xPower *= 0.5;
+        this.yPower *= 0.5;
+        this.zPower *= 0.5;
         this.damage = damage;
     }
+
+//    @Override
+//    public Vec3 getDeltaMovement()
+//    {
+//        siy
+//        return super.getDeltaMovement();
+//    }
 
     protected void onHitBlock(BlockHitResult p_37258_)
     {
