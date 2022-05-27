@@ -3,6 +3,7 @@ package mod.arrokoth.tacticalcards.entity;
 import mod.arrokoth.tacticalcards.utils.RegistryHandler;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
@@ -20,7 +21,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @SuppressWarnings("unchecked")
 public class GraphicCardEntity extends Fireball
 {
-    protected final float damage;
+    protected float damage;
 
     public GraphicCardEntity(EntityType<? extends GraphicCardEntity> entityType, Level level)
     {
@@ -89,5 +90,17 @@ public class GraphicCardEntity extends Fireball
             }
             this.discard();
         }
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putFloat("card_dmg", damage);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        damage = tag.getFloat("card_dmg");
     }
 }
