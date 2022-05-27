@@ -22,7 +22,7 @@ import java.util.TreeMap;
 @MethodsReturnNonnullByDefault
 public class RegistryHandler
 {
-    public static final Map<String, RegistryObject<Item>> ITEM = new TreeMap<>();
+    public static final Map<String, RegistryObject<Item>> ITEMS = new TreeMap<>();
     private static final DeferredRegister<Item> ITEMS_REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, TacticalCards.MOD_ID);
     public static final Map<String, RegistryObject<Block>> BLOCKS = new TreeMap<>();
     private static final DeferredRegister<Block> BLOCKS_REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, TacticalCards.MOD_ID);
@@ -34,7 +34,7 @@ public class RegistryHandler
         @Override
         public ItemStack makeIcon()
         {
-            return new ItemStack(ITEM.get("gtx_690").get());
+            return new ItemStack(ITEMS.get("gtx_690").get());
         }
     };
 
@@ -57,11 +57,11 @@ public class RegistryHandler
     public static void registerCard(String id, float damage)
     {
         BLOCKS.put(id, BLOCKS_REGISTER.register(id, () -> new GraphicCardBlock(damage)));
-        ITEM.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
+        ITEMS.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
     }
 
     public static Item getCard(String id)
     {
-        return ITEM.get(id).get();
+        return ITEMS.get(id).get();
     }
 }
