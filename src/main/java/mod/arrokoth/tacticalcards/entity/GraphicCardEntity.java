@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -28,6 +29,17 @@ public class GraphicCardEntity extends Fireball
         super(entityType, level);
         this.setItem(ItemStack.EMPTY);
         this.damage = 0;
+    }
+
+    @Override
+    public void tick()
+    {
+        super.tick();
+        if (!this.isNoGravity())
+        {
+            Vec3 vec31 = this.getDeltaMovement();
+            this.setDeltaMovement(vec31.x, vec31.y - 0.005D, vec31.z);
+        }
     }
 
     @Override

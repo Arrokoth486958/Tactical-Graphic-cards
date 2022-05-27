@@ -1,6 +1,8 @@
 package mod.arrokoth.tacticalcards.block;
 
+import committee.nova.firesafety.common.block.api.ISpecialRenderType;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -28,7 +30,7 @@ import java.util.List;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class GraphicCardBlock extends DirectionalBlock
+public class GraphicCardBlock extends DirectionalBlock implements ISpecialRenderType
 {
     protected final float damage;
     
@@ -82,6 +84,12 @@ public class GraphicCardBlock extends DirectionalBlock
     public PushReaction getPistonPushReaction(BlockState state)
     {
         return PushReaction.DESTROY;
+    }
+
+    @Override
+    public RenderType getRenderType()
+    {
+        return RenderType.cutout();
     }
 
     @Override

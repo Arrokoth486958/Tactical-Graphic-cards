@@ -1,10 +1,12 @@
 package mod.arrokoth.tacticalcards.utils;
 
+import committee.nova.firesafety.common.block.api.ISpecialRenderType;
 import mod.arrokoth.tacticalcards.TacticalCards;
 import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
 import mod.arrokoth.tacticalcards.entity.GraphicCardEntity;
 import mod.arrokoth.tacticalcards.item.GraphicCardItem;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;
