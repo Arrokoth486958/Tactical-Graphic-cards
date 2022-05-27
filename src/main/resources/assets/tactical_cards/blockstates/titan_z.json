@@ -1,0 +1,38 @@
+{
+    "variants": 
+    {
+        "facing=down": 
+        {
+            "model": "tactical_cards:item/titan_z",
+            "x": 180
+        },
+        "facing=east": 
+        {
+            "model": "tactical_cards:item/titan_z",
+            "x": 270,
+            "y": 270
+        },
+        "facing=north": 
+        {
+            "model": "tactical_cards:item/titan_z",
+            "x": 270,
+            "y": 180
+        },
+        "facing=south": 
+        {
+            "model": "tactical_cards:item/titan_z",
+            "x": 270,
+            "y": 0
+        },
+        "facing=up": 
+        {
+            "model": "tactical_cards:item/titan_z"
+        },
+        "facing=west": 
+        {
+            "model": "tactical_cards:item/titan_z",
+            "x": 270,
+            "y": 90
+        }
+    }
+}
