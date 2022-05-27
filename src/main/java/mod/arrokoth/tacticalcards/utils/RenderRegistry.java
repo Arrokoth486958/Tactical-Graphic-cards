@@ -1,13 +1,13 @@
 package mod.arrokoth.tacticalcards.utils;
 
-import committee.nova.firesafety.common.block.api.ISpecialRenderType;
+import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
 import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,9 +31,9 @@ public class RenderRegistry
         {
             for (RegistryObject<Block> block : RegistryHandler.BLOCKS.values())
             {
-                if (block.get() instanceof ISpecialRenderType renderType)
+                if (block.get() instanceof GraphicCardBlock)
                 {
-                    ItemBlockRenderTypes.setRenderLayer(block.get(), renderType.getRenderType());
+                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
                 }
             }
         });
