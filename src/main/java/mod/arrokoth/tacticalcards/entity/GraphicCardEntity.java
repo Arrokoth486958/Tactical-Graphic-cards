@@ -3,8 +3,6 @@ package mod.arrokoth.tacticalcards.entity;
 import mod.arrokoth.tacticalcards.utils.RegistryHandler;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
@@ -13,7 +11,6 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -25,9 +22,9 @@ public class GraphicCardEntity extends Fireball
 {
     protected final float damage;
 
-    public GraphicCardEntity(EntityType<? extends GraphicCardEntity> p_37364_, Level p_37365_)
+    public GraphicCardEntity(EntityType<? extends GraphicCardEntity> entityType, Level level)
     {
-        super(p_37364_, p_37365_);
+        super(entityType, level);
         this.setItem(ItemStack.EMPTY);
         this.damage = 0;
     }
@@ -38,9 +35,9 @@ public class GraphicCardEntity extends Fireball
         return false;
     }
 
-    public GraphicCardEntity(Level p_37375_, LivingEntity p_37376_, double p_37377_, double p_37378_, double p_37379_, ItemStack item, float damage)
+    public GraphicCardEntity(Level level, LivingEntity entity, double x, double y, double z, ItemStack item, float damage)
     {
-        super((EntityType<? extends Fireball>) RegistryHandler.ENTITIES.get("card").get(), p_37376_, p_37377_, p_37378_, p_37379_, p_37375_);
+        super((EntityType<? extends Fireball>) RegistryHandler.ENTITIES.get("card").get(), entity, x, y, z, level);
         this.setItem(item);
         this.setNoGravity(false);
         this.xPower *= 0.5;

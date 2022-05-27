@@ -1,7 +1,6 @@
 package mod.arrokoth.tacticalcards.utils;
 
 import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,10 +14,10 @@ import net.minecraftforge.fml.common.Mod;
 public class RenderRegistry
 {
     @OnlyIn(Dist.CLIENT)
+    // todo: ↑ Is that needed?
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
-        event.registerEntityRenderer((EntityType<? extends ThrowableItemProjectile>) RegistryHandler.ENTITIES.get("card").get(), ThrownItemRenderer::new);
         event.registerEntityRenderer((EntityType<? extends ThrowableItemProjectile>) RegistryHandler.ENTITIES.get("card").get(), GraphicCardRenderer::new);
     }
 }

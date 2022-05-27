@@ -11,7 +11,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(TacticalCards.MOD_ID)
 public class TacticalCards
 {
-    //TODO: the localization
+    //TODO: the localization (Finished?)
     //TODO: gravity of the cards
 
     public static final String MOD_ID = "tactical_cards";

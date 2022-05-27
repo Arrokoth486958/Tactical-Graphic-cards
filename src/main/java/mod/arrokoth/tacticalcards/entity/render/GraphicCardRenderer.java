@@ -29,17 +29,17 @@ public class GraphicCardRenderer<T extends Entity & ItemSupplier> extends Entity
     private final float scale;
     private final boolean fullBright;
 
-    public GraphicCardRenderer(EntityRendererProvider.Context p_174416_, float scale, boolean fullBright)
+    public GraphicCardRenderer(EntityRendererProvider.Context ctx, float scale, boolean fullBright)
     {
-        super(p_174416_);
-        this.itemRenderer = p_174416_.getItemRenderer();
+        super(ctx);
+        this.itemRenderer = ctx.getItemRenderer();
         this.scale = scale;
         this.fullBright = fullBright;
     }
 
-    public GraphicCardRenderer(EntityRendererProvider.Context p_174414_)
+    public GraphicCardRenderer(EntityRendererProvider.Context ctx)
     {
-        this(p_174414_, 1.0F, false);
+        this(ctx, 1.0F, false);
     }
 
     protected int getBlockLightLevel(T entity, BlockPos pos)

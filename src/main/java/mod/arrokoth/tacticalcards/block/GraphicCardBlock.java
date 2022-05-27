@@ -8,7 +8,9 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -65,15 +67,15 @@ public class GraphicCardBlock extends DirectionalBlock
         return List.of(new ItemStack(this));
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_53105_)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        p_53105_.add(FACING);
+        builder.add(FACING);
     }
 
-    public BlockState getStateForPlacement(BlockPlaceContext p_53087_)
+    public BlockState getStateForPlacement(BlockPlaceContext ctx)
     {
-        Direction direction = p_53087_.getClickedFace();
-        BlockState blockstate = p_53087_.getLevel().getBlockState(p_53087_.getClickedPos().relative(direction.getOpposite()));
+        Direction direction = ctx.getClickedFace();
+        BlockState blockstate = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(direction.getOpposite()));
         return blockstate.is(this) && blockstate.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()) : this.defaultBlockState().setValue(FACING, direction);
     }
 
@@ -97,7 +99,7 @@ public class GraphicCardBlock extends DirectionalBlock
     }
 
     @Override
-    public boolean dropFromExplosion(Explosion p_49826_)
+    public boolean dropFromExplosion(Explosion explosion)
     {
         return false;
     }

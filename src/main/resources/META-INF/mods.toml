@@ -1,13 +1,13 @@
-modLoader="javafml" #mandatory
-loaderVersion="[40,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+modLoader="javafml"
+loaderVersion="[40,)"
 license="GPL v3"
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
-[[mods]] #mandatory
-modId="tactical_cards" #mandatory
+issueTrackerURL="https://github.com/Arrokoth486958/Tactical-Graphic-cards" #optional
+[[mods]]
+modId="tactical_cards"
 version="${file.jarVersion}"
 displayName="Tactical Graphic cards"
-logoFile="icon.png" #optional
-authors="Arrokoth, Radekemia" #optional
+logoFile="icon.png"
+authors="Arrokoth, Radekemia"
 description='''
 Hope ur guys know what happened with GTX 690.
 This mod added NVIDIA GTX 690 and other cards into Minecraft as weapons.
