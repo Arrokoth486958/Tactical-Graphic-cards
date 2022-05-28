@@ -22,12 +22,27 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class GraphicCardEntity extends Fireball
 {
     protected float damage;
+    protected double gravity;
 
     public GraphicCardEntity(EntityType<? extends GraphicCardEntity> entityType, Level level)
     {
         super(entityType, level);
         this.setItem(ItemStack.EMPTY);
         this.damage = 0;
+        this.gravity = 0;
+    }
+
+    @Override
+    public void tick()
+    {
+        super.tick();
+        this.gravity = getGravity() * ((double) this.tickCount / 2.0D);
+        this.setPos(this.getX(), this.getY() - this.gravity, this.getZ());
+    }
+
+    protected double getGravity()
+    {
+        return 0.03D;
     }
 
     @Override
@@ -40,7 +55,6 @@ public class GraphicCardEntity extends Fireball
     {
         super((EntityType<? extends Fireball>) RegistryHandler.ENTITIES.get("card").get(), entity, x, y, z, level);
         this.setItem(item);
-        this.setNoGravity(false);
         this.xPower *= 0.5;
         this.yPower *= 0.5;
         this.zPower *= 0.5;
