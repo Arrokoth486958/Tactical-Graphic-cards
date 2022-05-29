@@ -1,7 +1,6 @@
 package mod.arrokoth.tacticalcards.block;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -9,12 +8,13 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseFireBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -29,14 +29,30 @@ import java.util.List;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class GraphicCardBlock extends DirectionalBlock
+public class GraphicCardBlock extends FaceAttachedHorizontalDirectionalBlock
 {
     protected final float damage;
-    
+    // Block.box(x, y, z, w, h, d)
+//    protected static final VoxelShape NORTH_AABB = Block.box(5.0D, 4.0D, 10.0D, 11.0D, 12.0D, 16.0D);
+    protected static final VoxelShape NORTH_AABB = Block.box(1.0D, 5.0D, 14.0D, 15.0D, 11.0D, 16.0D);
+    protected static final VoxelShape SOUTH_AABB = Block.box(1.0D, 5.0D, 0.0D, 15.0D, 11.0D, 2.0D);
+    protected static final VoxelShape WEST_AABB = Block.box(14.0D, 5.0D, 1.0D, 16.0D, 11.0D, 15.0D);
+    protected static final VoxelShape EAST_AABB = Block.box(0.0D, 5.0D, 1.0D, 2.0D, 11.0D, 15.0D);
+    protected static final VoxelShape UP_AABB_Z = Block.box(1.0D, 0.0D, 5.0D, 15.0D, 2.0D, 11.0D);
+    protected static final VoxelShape UP_AABB_X = Block.box(5.0D, 0.0D, 1.0D, 11.0D, 2.0D, 15.0D);
+    protected static final VoxelShape DOWN_AABB_Z = Block.box(1.0D, 14.0D, 5, 15.0D, 16.0D, 11);
+    protected static final VoxelShape DOWN_AABB_X = Block.box(5.0D, 14.0D, 1.0D, 11.0D, 16.0D, 15.0D);
+
     public GraphicCardBlock(float damage)
     {
         super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.CLAY));
         this.damage = damage;
+    }
+
+    @Override
+    public boolean canSurvive(BlockState p_53186_, LevelReader p_53187_, BlockPos p_53188_)
+    {
+        return true;
     }
 
     @Override
@@ -68,16 +84,9 @@ public class GraphicCardBlock extends DirectionalBlock
         return List.of(new ItemStack(this));
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54663_)
     {
-        builder.add(FACING);
-    }
-
-    public BlockState getStateForPlacement(BlockPlaceContext ctx)
-    {
-        Direction direction = ctx.getClickedFace();
-        BlockState blockstate = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(direction.getOpposite()));
-        return blockstate.is(this) && blockstate.getValue(FACING) == direction ? this.defaultBlockState().setValue(FACING, direction.getOpposite()) : this.defaultBlockState().setValue(FACING, direction);
+        p_54663_.add(FACE, FACING);
     }
 
     public PushReaction getPistonPushReaction(BlockState state)
@@ -88,15 +97,41 @@ public class GraphicCardBlock extends DirectionalBlock
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext collisionContext)
     {
-        return switch (state.getValue(FACING))
+        switch((AttachFace) state.getValue(FACE))
         {
-            case DOWN -> Shapes.box(0, 0.84375, 0.25, 1, 1, 0.75);
-            case UP -> Shapes.box(0, 0, 0.25, 1, 0.15625, 0.75);
-            case NORTH -> Shapes.box(0, 0.25, 0.828125, 1, 0.75, 0.984375);
-            case SOUTH -> Shapes.box(0, 0.25, 0, 1, 0.75, 0.15625);
-            case WEST -> Shapes.box(0.84375, 0.25, 0, 1, 0.75, 1);
-            case EAST -> Shapes.box(0, 0.25, 0, 0.15625, 0.75, 1);
-        };
+            case FLOOR:
+                switch(state.getValue(FACING).getAxis())
+                {
+                    case X:
+                        return UP_AABB_X;
+                    case Z:
+                    default:
+                        return UP_AABB_Z;
+                }
+            case WALL:
+                switch((Direction) state.getValue(FACING))
+                {
+                    case EAST:
+                        return EAST_AABB;
+                    case WEST:
+                        return WEST_AABB;
+                    case SOUTH:
+                        return SOUTH_AABB;
+                    case NORTH:
+                    default:
+                        return NORTH_AABB;
+                }
+            case CEILING:
+                default:
+                    switch(state.getValue(FACING).getAxis())
+                    {
+                        case X:
+                            return DOWN_AABB_X;
+                        case Z:
+                        default:
+                            return DOWN_AABB_Z;
+                    }
+        }
     }
 
     @Override
