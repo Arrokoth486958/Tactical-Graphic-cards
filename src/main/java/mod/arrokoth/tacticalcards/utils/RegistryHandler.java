@@ -13,6 +13,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -43,7 +44,15 @@ public class RegistryHandler
     public static void register(IEventBus bus)
     {
         // NVIDIA
-        registerCard("gt_610", 15);
+        registerCard("gt_610", 15,
+                Block.box(4.0D, 5.0D, 14.0D, 12.0D, 11.0D, 16.0D),
+                Block.box(4.0D, 5.0D, 0.0D, 12.0D, 11.0D, 2.0D),
+                Block.box(14.0D, 5.0D, 4.0D, 16.0D, 11.0D, 12.0D),
+                Block.box(0.0D, 5.0D, 4.0D, 2.0D, 11.0D, 12.0D),
+                Block.box(4.0D, 0.0D, 5.0D, 12.0D, 2.0D, 11.0D),
+                Block.box(5.0D, 0.0D, 4.0D, 11.0D, 2.0D, 12.0D),
+                Block.box(4.0D, 14.0D, 5.0D, 12.0D, 16.0D, 11.0D),
+                Block.box(5.0D, 14.0D, 4.0D, 11.0D, 16.0D, 12.0D));
         registerCard("gtx_590", 20);
         registerCard("gtx_690", 25);
         registerCard("titan_z", 30);
@@ -59,6 +68,12 @@ public class RegistryHandler
     public static void registerCard(String id, float damage)
     {
         BLOCKS.put(id, BLOCKS_REGISTER.register(id, () -> new GraphicCardBlock(damage)));
+        ITEMS.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
+    }
+
+    public static void registerCard(String id, float damage, VoxelShape NORTH_AABB, VoxelShape SOUTH_AABB, VoxelShape WEST_AABB, VoxelShape EAST_AABB, VoxelShape UP_AABB_Z, VoxelShape UP_AABB_X, VoxelShape DOWN_AABB_Z, VoxelShape DOWN_AABB_X)
+    {
+        BLOCKS.put(id, BLOCKS_REGISTER.register(id, () -> new GraphicCardBlock(damage, NORTH_AABB, SOUTH_AABB, WEST_AABB, EAST_AABB, UP_AABB_Z, UP_AABB_X, DOWN_AABB_Z, DOWN_AABB_X)));
         ITEMS.put(id, ITEMS_REGISTER.register(id, () -> new GraphicCardItem(BLOCKS.get(id).get(), damage)));
     }
 

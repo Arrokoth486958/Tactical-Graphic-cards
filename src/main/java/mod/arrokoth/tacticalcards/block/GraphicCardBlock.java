@@ -34,19 +34,40 @@ public class GraphicCardBlock extends FaceAttachedHorizontalDirectionalBlock
     protected final float damage;
     // Block.box(x, y, z, w, h, d)
 //    protected static final VoxelShape NORTH_AABB = Block.box(5.0D, 4.0D, 10.0D, 11.0D, 12.0D, 16.0D);
-    protected static final VoxelShape NORTH_AABB = Block.box(1.0D, 5.0D, 14.0D, 15.0D, 11.0D, 16.0D);
-    protected static final VoxelShape SOUTH_AABB = Block.box(1.0D, 5.0D, 0.0D, 15.0D, 11.0D, 2.0D);
-    protected static final VoxelShape WEST_AABB = Block.box(14.0D, 5.0D, 1.0D, 16.0D, 11.0D, 15.0D);
-    protected static final VoxelShape EAST_AABB = Block.box(0.0D, 5.0D, 1.0D, 2.0D, 11.0D, 15.0D);
-    protected static final VoxelShape UP_AABB_Z = Block.box(1.0D, 0.0D, 5.0D, 15.0D, 2.0D, 11.0D);
-    protected static final VoxelShape UP_AABB_X = Block.box(5.0D, 0.0D, 1.0D, 11.0D, 2.0D, 15.0D);
-    protected static final VoxelShape DOWN_AABB_Z = Block.box(1.0D, 14.0D, 5, 15.0D, 16.0D, 11);
-    protected static final VoxelShape DOWN_AABB_X = Block.box(5.0D, 14.0D, 1.0D, 11.0D, 16.0D, 15.0D);
+    protected final VoxelShape NORTH_AABB;
+    protected final VoxelShape SOUTH_AABB;
+    protected final VoxelShape WEST_AABB;
+    protected final VoxelShape EAST_AABB;
+    protected final VoxelShape UP_AABB_Z;
+    protected final VoxelShape UP_AABB_X;
+    protected final VoxelShape DOWN_AABB_Z;
+    protected final VoxelShape DOWN_AABB_X;
 
     public GraphicCardBlock(float damage)
     {
+        this(damage,
+                Block.box(1.0D, 5.0D, 14.0D, 15.0D, 11.0D, 16.0D),
+                Block.box(1.0D, 5.0D, 0.0D, 15.0D, 11.0D, 2.0D),
+                Block.box(14.0D, 5.0D, 1.0D, 16.0D, 11.0D, 15.0D),
+                Block.box(0.0D, 5.0D, 1.0D, 2.0D, 11.0D, 15.0D),
+                Block.box(1.0D, 0.0D, 5.0D, 15.0D, 2.0D, 11.0D),
+                Block.box(5.0D, 0.0D, 1.0D, 11.0D, 2.0D, 15.0D),
+                Block.box(1.0D, 14.0D, 5.0D, 15.0D, 16.0D, 11.0D),
+                Block.box(5.0D, 14.0D, 1.0D, 11.0D, 16.0D, 15.0D));
+    }
+
+    public GraphicCardBlock(float damage, VoxelShape NORTH_AABB, VoxelShape SOUTH_AABB, VoxelShape WEST_AABB, VoxelShape EAST_AABB, VoxelShape UP_AABB_Z, VoxelShape UP_AABB_X, VoxelShape DOWN_AABB_Z, VoxelShape DOWN_AABB_X)
+    {
         super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.CLAY));
         this.damage = damage;
+        this.NORTH_AABB = NORTH_AABB;
+        this.SOUTH_AABB = SOUTH_AABB;
+        this.WEST_AABB = WEST_AABB;
+        this.EAST_AABB = EAST_AABB;
+        this.UP_AABB_Z = UP_AABB_Z;
+        this.UP_AABB_X = UP_AABB_X;
+        this.DOWN_AABB_Z = DOWN_AABB_Z;
+        this.DOWN_AABB_X = DOWN_AABB_X;
     }
 
     @Override
