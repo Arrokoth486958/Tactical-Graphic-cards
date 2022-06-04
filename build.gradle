@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = "1.0.0a-build-2022527"
+version = "1.1.0a-build-20220604"
 group = 'mod.arrokoth.tacticalcards' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'TacticalCards'
 

@@ -61,11 +61,6 @@ public class GraphicCardEntity extends Fireball
         this.damage = damage;
     }
 
-    protected void onHitBlock(BlockHitResult hit)
-    {
-        super.onHitBlock(hit);
-    }
-
     protected void onHit(HitResult result)
     {
         super.onHit(result);
@@ -84,21 +79,19 @@ public class GraphicCardEntity extends Fireball
         {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
             this.level.explode(null, this.getX(), this.getY(), this.getZ(), this.damage / 2, flag, flag ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE);
-            for (int x = (int) (result.getLocation().x - (this.damage / 2)); x < (int) (result.getLocation().x + (this.damage / 2)); ++x)
+            Iterable<BlockPos> positions = BlockPos.betweenClosed((int) (this.blockPosition().getX() - this.damage / 2), (int) (this.blockPosition().getY() - this.damage / 2), (int) (this.blockPosition().getZ() - this.damage / 2), (int) (this.blockPosition().getX() + this.damage / 2), (int) (this.blockPosition().getY() + this.damage / 2), (int) (this.blockPosition().getZ() + this.damage / 2));
+            for (BlockPos pos : positions)
             {
-                for (int z = (int) (result.getLocation().z - (this.damage / 2)); z < (int) (result.getLocation().z + (this.damage / 2)); ++z)
+                double distance = Math.sqrt(Math.pow(pos.getX() - result.getLocation().x, 2) + Math.pow(pos.getZ() - result.getLocation().z, 2) + Math.pow(pos.getY() - result.getLocation().y, 2));
+                if (distance <= this.damage / 2)
                 {
-                    for (int y = (int) (result.getLocation().y - (this.damage / 2)); y < (int) (result.getLocation().y + (this.damage / 2)); ++y)
+                    BlockPos pos1 = new BlockPos(pos.getX(), pos.getY(), pos.getZ());
+                    if (level.getBlockState(pos1.below()).getMaterial().isSolid() &&
+                            !level.getBlockState(pos1).getMaterial().isSolid() &&
+                            !level.getBlockState(pos1).getMaterial().isLiquid() &&
+                            (distance == 0 || this.random.nextInt((int) (this.damage + (distance * 2))) <= this.damage - distance))
                     {
-                        double distance = Math.sqrt(Math.pow(x - result.getLocation().x, 2) + Math.pow(z - result.getLocation().z, 2) + Math.pow(y - result.getLocation().y, 2));
-                        if (distance <= this.damage / 2)
-                        {
-                            BlockPos pos = new BlockPos(x, y, z);
-                            if (level.getBlockState(pos.below()).getMaterial().isSolid() && !level.getBlockState(pos).getMaterial().isSolid() && (distance == 0 || this.random.nextInt((int) (this.damage + (distance * 2))) <= this.damage - distance))
-                            {
-                                level.setBlockAndUpdate(pos, BaseFireBlock.getState(this.level, pos));
-                            }
-                        }
+                        level.setBlockAndUpdate(pos1, BaseFireBlock.getState(this.level, pos1));
                     }
                 }
             }

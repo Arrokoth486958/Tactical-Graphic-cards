@@ -7,6 +7,7 @@ import mod.arrokoth.tacticalcards.entity.GraphicCardEntity;
 import mod.arrokoth.tacticalcards.item.GraphicCardItem;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.CreativeModeTab;

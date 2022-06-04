@@ -4,7 +4,6 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -14,13 +13,11 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.AttachFace;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -68,6 +65,17 @@ public class GraphicCardBlock extends FaceAttachedHorizontalDirectionalBlock
         this.UP_AABB_X = UP_AABB_X;
         this.DOWN_AABB_Z = DOWN_AABB_Z;
         this.DOWN_AABB_X = DOWN_AABB_X;
+    }
+
+    @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState state1, boolean b)
+    {
+        super.onPlace(state, level, pos, state1, b);
+        if (level.hasNeighborSignal(pos))
+        {
+            explode(level, pos);
+            level.removeBlock(pos, false);
+        }
     }
 
     @Override
@@ -167,21 +175,19 @@ public class GraphicCardBlock extends FaceAttachedHorizontalDirectionalBlock
         {
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, null);
             level.explode(null, pos.getX(), pos.getY(), pos.getZ(), this.damage / 2, flag, flag ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE);
-            for (int x = (int) (pos.getX() - (this.damage / 2)); x < (int) (pos.getX() + (this.damage / 2)); ++x)
+            Iterable<BlockPos> positions = BlockPos.betweenClosed((int) (pos.getX() - this.damage / 2), (int) (pos.getY() - this.damage / 2), (int) (pos.getZ() - this.damage / 2), (int) (pos.getX() + this.damage / 2), (int) (pos.getY() + this.damage / 2), (int) (pos.getZ() + this.damage / 2));
+            for (BlockPos pos1 : positions)
             {
-                for (int z = (int) (pos.getZ() - (this.damage / 2)); z < (int) (pos.getZ() + (this.damage / 2)); ++z)
+                double distance = Math.sqrt(Math.pow(pos1.getX() - pos.getX(), 2) + Math.pow(pos1.getZ() - pos.getZ(), 2) + Math.pow(pos1.getY() - pos.getY(), 2));
+                if (distance <= this.damage / 2)
                 {
-                    for (int y = (int) (pos.getY() - (this.damage / 2)); y < (int) (pos.getY() + (this.damage / 2)); ++y)
+                    BlockPos pos2 = new BlockPos(pos1.getX(), pos1.getY(), pos1.getZ());
+                    if (level.getBlockState(pos2.below()).getMaterial().isSolid() &&
+                            !level.getBlockState(pos2).getMaterial().isSolid() &&
+                            !level.getBlockState(pos2).getMaterial().isLiquid() &&
+                            (distance == 0 || level.getRandom().nextInt((int) (this.damage + (distance * 2))) <= this.damage - distance))
                     {
-                        double distance = Math.sqrt(Math.pow(x - pos.getX(), 2) + Math.pow(z - pos.getZ(), 2) + Math.pow(y - pos.getY(), 2));
-                        if (distance <= this.damage / 2)
-                        {
-                            BlockPos pos1 = new BlockPos(x, y, z);
-                            if (level.getBlockState(pos1.below()).getMaterial().isSolid() && !level.getBlockState(pos1).getMaterial().isSolid() && (distance == 0 || level.random.nextInt((int) (this.damage + (distance * 2))) <= this.damage - distance))
-                            {
-                                level.setBlockAndUpdate(pos1, BaseFireBlock.getState(level, pos1));
-                            }
-                        }
+                        level.setBlockAndUpdate(pos2, BaseFireBlock.getState(level, pos2));
                     }
                 }
             }
