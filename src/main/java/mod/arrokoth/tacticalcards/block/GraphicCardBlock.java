@@ -29,8 +29,6 @@ import java.util.List;
 public class GraphicCardBlock extends FaceAttachedHorizontalDirectionalBlock
 {
     protected final float damage;
-    // Block.box(x, y, z, w, h, d)
-//    protected static final VoxelShape NORTH_AABB = Block.box(5.0D, 4.0D, 10.0D, 11.0D, 12.0D, 16.0D);
     protected final VoxelShape NORTH_AABB;
     protected final VoxelShape SOUTH_AABB;
     protected final VoxelShape WEST_AABB;
