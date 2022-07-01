@@ -1,0 +1,11 @@
+{
+    "tips.firesafety.danger.tactical_cards": "Die taktische Grafikkarten können sehr starke Explosionen verursachen.",
+    "tips.firesafety.danger.player_with_card": "Der Spieler haben taktische Grafikkarten in ihre Inventar.",
+    "itemGroup.tactical_cards": "Taktische Grafikkarten",
+    "block.tactical_cards.gt_610": "NVIDIA® GeForce® GT 610",
+    "block.tactical_cards.gtx_590": "NVIDIA® GeForce® GTX 590",
+    "block.tactical_cards.gtx_690": "NVIDIA® GeForce® GTX 690",
+    "block.tactical_cards.titan_z": "NVIDIA® GeForce® GTX Titan Z",
+    "block.tactical_cards.r9_295_x2": "AMD® Radeon™ R9 295X2",
+    "block.tactical_cards.hd_3870": "ATI® Radeon™ HD3870X2"
+}

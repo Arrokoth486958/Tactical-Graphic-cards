@@ -1,6 +1,7 @@
 {
-    "pack": {
-        "description": "examplemod resources",
+    "pack":
+    {
+        "description": "tactical cards resources",
         "pack_format": 9
     }
 }
