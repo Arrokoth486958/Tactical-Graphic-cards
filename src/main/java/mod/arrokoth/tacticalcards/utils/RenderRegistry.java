@@ -1,6 +1,7 @@
 package mod.arrokoth.tacticalcards.utils;
 
 import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
+import mod.arrokoth.tacticalcards.block.GraphicCardBoxBlock;
 import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -31,7 +32,7 @@ public class RenderRegistry
         {
             for (RegistryObject<Block> block : RegistryHandler.BLOCKS.values())
             {
-                if (block.get() instanceof GraphicCardBlock)
+                if (block.get() instanceof GraphicCardBlock || block.get() instanceof GraphicCardBoxBlock)
                 {
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
                 }

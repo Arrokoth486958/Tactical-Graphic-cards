@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"parent": "tactical_cards:item/card_box",
 	"textures": {
-		"0": "tactical_cards:block/gtx_690_box",
-		"particle": "tactical_cards:block/gtx_690_box"
+		"0": "tactical_cards:block/gtx_590_box",
+		"particle": "tactical_cards:block/gtx_590_box"
 	}
 }

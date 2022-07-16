@@ -62,6 +62,7 @@ public class RegistryHandler
         // AMD
         registerCard("r9_295_x2", 20);
         registerCard("hd_3870", 25);
+        // Comming soon: ATi Voodoo5 6000
         ENTITIES.put("card", ENTITIES_REGISTER.register("card", () -> EntityType.Builder.<GraphicCardEntity>of(GraphicCardEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(TacticalCards.MOD_ID + ".card")));
         ITEMS_REGISTER.register(bus);
         BLOCKS_REGISTER.register(bus);
