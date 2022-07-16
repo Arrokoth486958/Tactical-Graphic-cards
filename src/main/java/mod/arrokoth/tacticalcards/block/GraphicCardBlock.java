@@ -124,7 +124,7 @@ public class GraphicCardBlock extends FaceAttachedHorizontalDirectionalBlock
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext collisionContext)
     {
-        switch((AttachFace) state.getValue(FACE))
+        switch(state.getValue(FACE))
         {
             case FLOOR:
                 switch(state.getValue(FACING).getAxis())

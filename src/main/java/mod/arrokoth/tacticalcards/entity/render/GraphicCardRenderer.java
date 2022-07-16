@@ -53,7 +53,7 @@ public class GraphicCardRenderer<T extends Entity & ItemSupplier> extends Entity
         {
             matrix.pushPose();
             matrix.scale(this.scale, this.scale, this.scale);
-            matrix.translate(0, 0.5, 0);
+            matrix.translate(0, 0.75, 0);
             matrix.mulPose(this.entityRenderDispatcher.cameraOrientation());
             matrix.mulPose(Vector3f.YP.rotationDegrees(180.0F));
             this.itemRenderer.renderStatic(null, entity.getItem(), ItemTransforms.TransformType.GROUND, false, matrix, bufferSource, entity.level, p_116090_, OverlayTexture.NO_OVERLAY, entity.getId());

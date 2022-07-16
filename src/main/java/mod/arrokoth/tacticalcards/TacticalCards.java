@@ -13,7 +13,7 @@ public class TacticalCards
 {
     public static final String MOD_ID = "tactical_cards";
     public static final String MOD_NAME = "Tactical Cards";
-    public static final boolean BOX = false;
+    public static final boolean BOX = true;
 
     public TacticalCards()
     {
