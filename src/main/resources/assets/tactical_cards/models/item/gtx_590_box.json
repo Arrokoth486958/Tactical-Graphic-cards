@@ -1,5 +1,4 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "tactical_cards:item/card_box",
 	"textures": {
 		"0": "tactical_cards:block/gtx_590_box",

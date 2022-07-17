@@ -3,14 +3,22 @@ package mod.arrokoth.tacticalcards.utils;
 import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
 import mod.arrokoth.tacticalcards.block.GraphicCardBoxBlock;
 import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
+import mod.arrokoth.tacticalcards.item.GraphicCardItem;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RenderArmEvent;
+import net.minecraftforge.client.event.RenderItemInFrameEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.RegistryObject;
@@ -39,4 +47,14 @@ public class RenderRegistry
             }
         });
     }
+
+//    public static void onItemInInventoryRendered(RenderArmEvent event)
+//    {
+//        // InventoryScreen.renderEntityInInventory();
+////        if (event.getItemStack().getItem() instanceof GraphicCardItem)
+////        {
+////            event.setCanceled(true);
+////        }
+////        event.getRenderer().getTextureLocation()
+//    }
 }
