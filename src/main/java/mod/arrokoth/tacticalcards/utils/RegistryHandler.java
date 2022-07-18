@@ -56,6 +56,7 @@ public class RegistryHandler
         registerCard("gtx_590", 20);
         registerCard("gtx_690", 25);
         registerCard("titan_z", 30);
+        registerCard("rtx_4099", 60);
         // AMD
         registerCard("r9_295_x2", 20);
         registerCard("hd_3870", 25);
