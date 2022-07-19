@@ -2,6 +2,7 @@
     "tips.firesafety.danger.tactical_cards": "战术核显卡易造成威力巨大的爆炸",
     "tips.firesafety.danger.player_with_card": "玩家携有战术核显卡",
     "itemGroup.tactical_cards": "战术核显卡",
+    "itemGroup.tactical_cards_deco": "战术核显卡 | 装饰",
     "entity.tactical_cards.card": "显卡",
     "block.tactical_cards.gt_610": "NVIDIA® GeForce® GT 610",
     "block.tactical_cards.gt_610_box": "包装过的NVIDIA® GeForce® GT 610",
@@ -14,5 +15,7 @@
     "block.tactical_cards.r9_295_x2": "AMD® Radeon™ R9 295X2",
     "block.tactical_cards.r9_295_x2_box": "包装过的AMD® Radeon™ R9 295X2",
     "block.tactical_cards.hd_3870": "ATI® Radeon™ HD3870X2",
-    "block.tactical_cards.hd_3870_box": "包装过的ATI® Radeon™ HD3870X2"
+    "block.tactical_cards.hd_3870_box": "包装过的ATI® Radeon™ HD3870X2",
+    "block.tactical_cards.rtx_4099": "NVIDIA® GeForce® RTX 4099",
+    "block.tactical_cards.rtx_4099_box": "包装过的NVIDIA® GeForce® RTX 4099"
 }

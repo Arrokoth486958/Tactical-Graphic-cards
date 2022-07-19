@@ -2,6 +2,7 @@
     "tips.firesafety.danger.tactical_cards": "Tactical Cards are prone to causing powerful explosions",
     "tips.firesafety.danger.player_with_card": "The player is carrying tactical cards",
     "itemGroup.tactical_cards": "Tactical Graphic cards",
+    "itemGroup.tactical_cards_deco": "Tactical Graphic cards | Decoration",
     "entity.tactical_cards.card": "Graphic card",
     "block.tactical_cards.gt_610": "NVIDIA® GeForce® GT 610",
     "block.tactical_cards.gt_610_box": "Packaged NVIDIA® GeForce® GT 610",
@@ -14,5 +15,7 @@
     "block.tactical_cards.r9_295_x2": "AMD® Radeon™ R9 295X2",
     "block.tactical_cards.r9_295_x2_box": "Packaged AMD® Radeon™ R9 295X2",
     "block.tactical_cards.hd_3870": "ATI® Radeon™ HD3870X2",
-    "block.tactical_cards.hd_3870_box": "Packaged ATI® Radeon™ HD3870X2"
+    "block.tactical_cards.hd_3870_box": "Packaged ATI® Radeon™ HD3870X2",
+    "block.tactical_cards.rtx_4099": "NVIDIA® GeForce® RTX 4099",
+    "block.tactical_cards.rtx_4099_box": "Packaged NVIDIA® GeForce® RTX 4099"
 }

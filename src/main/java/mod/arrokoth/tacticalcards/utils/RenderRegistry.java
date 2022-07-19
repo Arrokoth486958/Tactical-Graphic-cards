@@ -2,6 +2,7 @@ package mod.arrokoth.tacticalcards.utils;
 
 import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
 import mod.arrokoth.tacticalcards.block.GraphicCardBoxBlock;
+import mod.arrokoth.tacticalcards.block.GraphicCardDecoBlock;
 import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
 import mod.arrokoth.tacticalcards.item.GraphicCardItem;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -10,7 +11,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RenderArmEvent;
@@ -43,6 +46,10 @@ public class RenderRegistry
                 if (block.get() instanceof GraphicCardBlock || block.get() instanceof GraphicCardBoxBlock)
                 {
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
+                }
+                if (block.get() instanceof GraphicCardDecoBlock)
+                {
+                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent());
                 }
             }
         });
