@@ -111,6 +111,7 @@ public class RegistryHandler
         PAINTINGS.register("poster_2", () -> new Motive(16, 32));
         PAINTINGS.register("poster_3", () -> new Motive(16, 32));
         PAINTINGS.register("poster_4", () -> new Motive(16, 32));
+        PAINTINGS.register("poster_5", () -> new Motive(128, 96));
         // Entity
         ENTITIES.put("card", ENTITIES_REGISTER.register("card", () -> EntityType.Builder.<GraphicCardEntity>of(GraphicCardEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(TacticalCards.MOD_ID + ".card")));
         // Villager
