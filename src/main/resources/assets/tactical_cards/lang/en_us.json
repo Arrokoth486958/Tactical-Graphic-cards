@@ -16,6 +16,10 @@
     "block.tactical_cards.r9_295_x2_box": "Packaged AMD® Radeon™ R9 295X2",
     "block.tactical_cards.hd_3870": "ATI® Radeon™ HD3870X2",
     "block.tactical_cards.hd_3870_box": "Packaged ATI® Radeon™ HD3870X2",
+    "block.tactical_cards.rtx_3090": "NVIDIA® GeForce® RTX 3090",
+    "block.tactical_cards.rtx_3090_box": "Packaged NVIDIA® GeForce® RTX 3090",
     "block.tactical_cards.rtx_4099": "NVIDIA® GeForce® RTX 4099",
-    "block.tactical_cards.rtx_4099_box": "Packaged NVIDIA® GeForce® RTX 4099"
+    "block.tactical_cards.rtx_4099_box": "Packaged NVIDIA® GeForce® RTX 4099",
+    "block.tactical_cards.trade_table": "Trade table",
+    "entity.minecraft.villager.tactical_cards.card_seller": "Card seller"
 }

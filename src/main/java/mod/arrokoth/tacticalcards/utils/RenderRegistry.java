@@ -3,6 +3,7 @@ package mod.arrokoth.tacticalcards.utils;
 import mod.arrokoth.tacticalcards.block.GraphicCardBlock;
 import mod.arrokoth.tacticalcards.block.GraphicCardBoxBlock;
 import mod.arrokoth.tacticalcards.block.GraphicCardDecoBlock;
+import mod.arrokoth.tacticalcards.block.TradeTableBlock;
 import mod.arrokoth.tacticalcards.entity.render.GraphicCardRenderer;
 import mod.arrokoth.tacticalcards.item.GraphicCardItem;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -43,7 +44,7 @@ public class RenderRegistry
         {
             for (RegistryObject<Block> block : RegistryHandler.BLOCKS.values())
             {
-                if (block.get() instanceof GraphicCardBlock || block.get() instanceof GraphicCardBoxBlock)
+                if (block.get() instanceof GraphicCardBlock || block.get() instanceof GraphicCardBoxBlock || block.get() instanceof TradeTableBlock)
                 {
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
                 }
