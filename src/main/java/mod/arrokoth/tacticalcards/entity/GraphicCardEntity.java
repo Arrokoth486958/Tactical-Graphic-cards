@@ -77,8 +77,9 @@ public class GraphicCardEntity extends Fireball
     {
         if (!this.level.isClientSide)
         {
+            System.out.println((float) Math.pow(this.damage / 3, 2));
             boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
-            this.level.explode(null, this.getX(), this.getY(), this.getZ(), this.damage / 2, flag, flag ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE);
+            this.level.explode(null, this.getX(), this.getY(), this.getZ(), (float) Math.pow(this.damage / 3, 1.25), flag, flag ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE);
             Iterable<BlockPos> positions = BlockPos.betweenClosed((int) (this.blockPosition().getX() - this.damage / 2), (int) (this.blockPosition().getY() - this.damage / 2), (int) (this.blockPosition().getZ() - this.damage / 2), (int) (this.blockPosition().getX() + this.damage / 2), (int) (this.blockPosition().getY() + this.damage / 2), (int) (this.blockPosition().getZ() + this.damage / 2));
             for (BlockPos pos : positions)
             {
