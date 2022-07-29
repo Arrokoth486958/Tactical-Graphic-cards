@@ -4,7 +4,7 @@ license="GPL v3"
 issueTrackerURL="https://github.com/Arrokoth486958/Tactical-Graphic-cards" #optional
 [[mods]]
 modId="tactical_cards"
-version="1.0.0r-build-20220728"
+version="1.0.0r-build-20220729"
 displayName="Tactical Graphic cards"
 logoFile="icon.png"
 authors="Arrokoth, Radekemia"

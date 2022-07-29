@@ -104,8 +104,6 @@ public class GraphicCardBoxBlock extends FaceAttachedHorizontalDirectionalBlock
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult result)
     {
-        System.out.println("FACE:" + FACE);
-        System.out.println("FACING:" + FACING);
         level.playSound(player, pos, SoundEvents.WOOL_BREAK, SoundSource.BLOCKS, 1f, 1f);
         level.setBlockAndUpdate(pos, card.defaultBlockState().setValue(FACE, state.getValue(FACE)).setValue(FACING, state.getValue(FACING)));
         return InteractionResult.SUCCESS;
