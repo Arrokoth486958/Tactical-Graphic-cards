@@ -16,11 +16,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RenderArmEvent;
-import net.minecraftforge.client.event.RenderItemInFrameEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
@@ -55,14 +54,4 @@ public class RenderRegistry
             }
         });
     }
-
-//    public static void onItemInInventoryRendered(RenderArmEvent event)
-//    {
-//        // InventoryScreen.renderEntityInInventory();
-////        if (event.getItemStack().getItem() instanceof GraphicCardItem)
-////        {
-////            event.setCanceled(true);
-////        }
-////        event.getRenderer().getTextureLocation()
-//    }
 }

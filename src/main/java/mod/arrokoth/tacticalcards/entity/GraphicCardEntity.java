@@ -1,5 +1,6 @@
 package mod.arrokoth.tacticalcards.entity;
 
+import com.mojang.math.Vector3d;
 import mod.arrokoth.tacticalcards.utils.RegistryHandler;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -13,8 +14,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec2;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.List;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
@@ -98,6 +102,8 @@ public class GraphicCardEntity extends Fireball
             this.discard();
         }
     }
+
+
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
